@@ -129,9 +129,6 @@ if __name__ == "__main__":
     premint_event_objects = []
     [premint_event_objects.append(PremintEvent(x)) for x in unique_premint_links]
 
-    print(unique_premint_links)
-
-
     def my_worker(premint_event):
         """
         Worker for multithreading, contains main logic.
@@ -146,7 +143,6 @@ if __name__ == "__main__":
                 logger.success('Saved data about active premint event.')
             else:
                 logger.error(f'Error occurred: {result["error"]}')
-
 
     with ThreadPoolExecutor(max_workers=total_threads) as executor:
         executor.map(my_worker, premint_event_objects)
